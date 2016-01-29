@@ -1,0 +1,72 @@
+$borderColor=rgb(119, 24, 11)
+$circleColor=rgb(180, 26, 26)
+$animation-sytle=3s ease-in-out infinite alternate
+
+html,body
+    height 100%
+    margin 0
+    padding 0
+
+.wrapper
+    display flex
+    height 100%
+    align-items center
+    justify-content center
+
+.loading-3dcube
+    perspective 200px
+    perspective-origin 50% 50%
+    width 75px
+    height 75px
+    position relative
+    div
+        box-sizing border-box
+
+    .cube
+        transform-style preserve-3d
+        transform translateZ(-100px)
+        animation rotating-cube $animation-sytle
+        width 100%
+        height 100%
+
+    .pane
+        position absolute
+        width 75px
+        height 75px
+        transform-style preserve-3d
+
+        &:nth-child(1)
+            transform translateZ(-25px)
+        &:nth-child(2)
+            transform translateZ(0)
+        &:nth-child(3)
+            transform translateZ(25px)
+    .circle
+        float left
+        width 15px
+        height 15px
+        border-radius 10px
+        background-color $circleColor
+        border 1px solid $borderColor
+        margin 5px
+        animation rotating-cube-reverse $animation-sytle
+
+@keyframes rotating-cube
+    0%
+        transform rotate3d(1,1,0,0)
+    33%
+        transform rotate3d(0,1,0,135deg)
+    66%
+        //transform rotate3d(0,1,0,135deg) rotate3d(1,0,-1,225deg)
+        transform rotate3d(0,1,0,45deg) rotate3d(1,0,1,-45deg)
+    100%
+        transform rotate3d(0,1,0,45deg) rotate3d(1,0,1,45deg)
+@keyframes rotating-cube-reverse
+    0%
+        transform rotate3d(1,1,0,0)
+    33%
+        transform rotate3d(0,1,0,-135deg)
+    66%
+        transform rotate3d(0,1,0,-45deg) rotate3d(1,0,0,45deg)
+    100%
+        transform rotate3d(0,1,0,-45deg) rotate3d(1,0,0,-45deg)
